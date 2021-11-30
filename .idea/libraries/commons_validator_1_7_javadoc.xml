@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="commons-validator-1.7-javadoc">
+    <CLASSES />
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/../../DataMobileAutomation/commons-validator-1.7-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES />
+  </library>
+</component>
