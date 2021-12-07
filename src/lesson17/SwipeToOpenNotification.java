@@ -27,16 +27,17 @@ public class SwipeToOpenNotification {
             int screenHeight = windowsSize.getHeight();
             int screenWidth = windowsSize.getWidth();
             // caculate touch point
-            int xStartPoint = (20 * screenWidth) / 100;
+            int xStartPoint = (50 * screenWidth) / 100;
             int xEndPoint = xStartPoint;
             int yStartPoint = 0 ;
-            int yEndPoint = (90 * screenHeight) / 100;
+            int yEndPoint = (80 * screenHeight) / 100;
             // Convert to PointOption - Coordinates
             PointOption startPoint = new PointOption().withCoordinates(xStartPoint, yStartPoint);
             PointOption endPoint = new PointOption().withCoordinates(xEndPoint, yEndPoint);
             // Perform touch action
             TouchAction touchAction = new TouchAction(androidDriver);
-            for (int i = 0; i < 5; i++) {
+
+            //Swipe down to open notification
                 touchAction
                         .press(startPoint)
                         .waitAction(new WaitOptions().withDuration(Duration.ofSeconds(1)))
@@ -44,6 +45,7 @@ public class SwipeToOpenNotification {
                         .release()
                         .perform();
                 Thread.sleep(2000);
+
                 // Get the info inside the notification by getting a list
                 List<MobileElement> notificationElems = androidDriver.findElements(By.id("android:id/notification_main_column"));
                 if(notificationElems.isEmpty())
@@ -51,11 +53,12 @@ public class SwipeToOpenNotification {
                 Map<String, String> notificationList = new HashMap<>();
 
                 notificationElems.forEach(notification ->{
-                    String notificationTitle = notification.findElement(By.id("android:id/title")).getText();
+                    System.out.println(notification.findElement(By.id("android:id/title")).getText());
+                    /*String notificationTitle = notification.findElement(By.id("android:id/title")).getText();
                     String notificationContent = notification.findElement(By.id("android:id/text")).getText();
                     System.out.println(notificationTitle);
                     System.out.println(notificationContent);
-                    notificationList.put(notificationTitle,notificationContent);
+                    notificationList.put(notificationTitle, notificationContent);*/
                 });
                 touchAction
                         .press(endPoint)
@@ -65,13 +68,13 @@ public class SwipeToOpenNotification {
                         .perform();
                 notificationList.keySet().forEach(key -> System.out.println(key + ": " + notificationList.get(key)));
 
-            }
+
 
         } catch (Exception e) {
             e.printStackTrace();
 
         } finally {
-            DriverFactory.stopAppiumServer();
+        //    DriverFactory.stopAppiumServer();
 
         }
     }
