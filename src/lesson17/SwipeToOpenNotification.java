@@ -30,7 +30,7 @@ public class SwipeToOpenNotification {
             int xStartPoint = (50 * screenWidth) / 100;
             int xEndPoint = xStartPoint;
             int yStartPoint = 0 ;
-            int yEndPoint = (80 * screenHeight) / 100;
+            int yEndPoint = (50 * screenHeight) / 100;
             // Convert to PointOption - Coordinates
             PointOption startPoint = new PointOption().withCoordinates(xStartPoint, yStartPoint);
             PointOption endPoint = new PointOption().withCoordinates(xEndPoint, yEndPoint);
@@ -53,12 +53,14 @@ public class SwipeToOpenNotification {
                 Map<String, String> notificationList = new HashMap<>();
 
                 notificationElems.forEach(notification ->{
-                    System.out.println(notification.findElement(By.id("android:id/title")).getText());
-                    /*String notificationTitle = notification.findElement(By.id("android:id/title")).getText();
-                    String notificationContent = notification.findElement(By.id("android:id/text")).getText();
-                    System.out.println(notificationTitle);
-                    System.out.println(notificationContent);
-                    notificationList.put(notificationTitle, notificationContent);*/
+                    //System.out.println(notification.findElement(By.id("android:id/title")).getText());
+
+                    String notificationTitle = notification.findElement(By.id("android:id/title")).getText();
+                   // System.out.println(notificationTitle);
+
+                    String notificationContent = notification.findElements(By.className("android.widget.TextView")).get(1).getText();
+                    //System.out.println(notificationContent);
+                    notificationList.put(notificationTitle, notificationContent);
                 });
                 touchAction
                         .press(endPoint)
