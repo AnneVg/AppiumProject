@@ -37,13 +37,10 @@ public class HandleMultipleApps {
             Thread.sleep(2000);
             // Do sth here
             androidDriver.findElementByXPath("//*[@text='Network & internet']").click();
-            //androidDriver.findElementByXPath("//*[@text='Wi-Fi']").click();
+
             //If ON -> OFF and els OFF -> ON
-            //List<MobileElement> networkItems = androidDriver.findElements(By.id("android:id/notification_main_column"));
-
-            MobileElement wifiStatus = androidDriver.findElements(By.id("android:id/summary")).get(0);
-            MobileElement wifiToggleBtn = androidDriver.findElement(By.id("com.android.settings:id/switchWidget"));
-
+             MobileElement wifiToggleBtn = androidDriver.findElement(By.id("com.android.settings:id/switchWidget"));
+            MobileElement wifiStatus = androidDriver.findElementByXPath("//*[@text='AndroidWifi']");
             boolean isWifiOn = wifiStatus.getText().equals("AndroidWifi");
             if(isWifiOn) {
                 //Change to OFF
